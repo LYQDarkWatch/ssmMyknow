@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lyq.dao.knowledgeDao">
+    <insert id="upKonwledge" parameterType="knowledge">
+        insert into knowledge (kid,kname,username,pnitro,typename,status) values(null,#{kname},#{username},#{pnitro},#{typename},0)
+    </insert>
+    <insert id="addtype" parameterType="knowledge">
+        insert into konwledgetype (tid,typename,username) values (null,#{typename},#{username})
+    </insert>
+    <select id="getknowdata" resultType="knowledge">
+    select * from knowledge where username=#{username}
+</select>
+    <select id="getall" resultType="knowledge">
+    select * from knowledge where status=1
+</select>
+    <delete id="deletedate" parameterType="integer">
+    delete from  knowledge where kid=#{kid}
+</delete>
+    <select id="findkonwbyid" parameterType="integer" resultType="knowledge">
+    select * FROM knowledge where kid=#{kid}
+</select>
+    <select id="findtypebyid" resultType="knowledge">
+    select * FROM konwledgetype
+</select>
+    <select id="findtypekonw" resultType="knowledge">
+    select * FROM knowledge where typename=#{typename}
+</select>
+    <update id="upknowdate" parameterType="knowledge">
+    update knowledge set kname=#{kname},pnitro=#{pnitro},typename=#{typename} where kid=#{kid}
+    </update>
+    <update id="shapebyid" parameterType="integer">
+    update  knowledge set status=1 where  kid=#{kid}
+    </update>
+    <select id="findnamedate" resultType="knowledge" parameterType="integer">
+select * from knowledge where kid=#{ . }
+</select>
+    <select id="getDataByName" resultType="knowledge">
+        select * from knowledge where kname like CONCAT('%',#{kname},'%')
+    </select>
+</mapper>

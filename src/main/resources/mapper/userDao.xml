@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lyq.dao.userDao">
+    <select id="mycenter" resultType="user">
+    select * from user where username=#{username};
+    </select>
+    <delete id="deleteuser" parameterType="integer">
+    delete from  user where uid=#{uid}
+</delete>
+    <select id="finduser" parameterType="integer" resultType="user">
+    select * FROM user where uid=#{uid}
+</select>
+    <update id="updateuser" parameterType="user">
+    update user set  username=#{username},gender=#{gender},email=#{email} where uid=#{uid}
+    </update>
+</mapper>
